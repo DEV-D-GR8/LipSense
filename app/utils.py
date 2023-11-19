@@ -18,7 +18,7 @@ num_to_char = tf.keras.layers.StringLookup(
 def convert_mpeg_to_mp4(mpeg_path):
     video_clip = VideoFileClip(mpeg_path)
     with tempfile.NamedTemporaryFile(delete=False, suffix=".mp4") as temp_file:
-        video_clip.write_videofile(temp_file.name, fps=video_clip.fps if video_clip.fps is not None else 24, codec="libx264", audio_codec="aac", threads=4)
+        video_clip.write_videofile(temp_file.name, fps=video_clip.fps if video_clip.fps is not None else 24.0, codec="libx264", audio_codec="aac", threads=4)
 
     return temp_file.name
 
