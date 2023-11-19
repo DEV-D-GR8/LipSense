@@ -104,6 +104,7 @@ numba==0.57.1
 numpy==1.23.5
 oauthlib==3.2.2
 opencv-contrib-python==4.8.0.74
+opencv-python
 opt-einsum==3.3.0
 packaging==23.1
 pandas==1.5.3
