@@ -1,1 +1,3 @@
 libgl1-mesa-glx
+ffmpeg
+imagegick
