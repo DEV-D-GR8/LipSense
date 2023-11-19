@@ -1,7 +1,7 @@
 import streamlit as st
 import os 
 import tensorflow as tf 
-from utils import load_data, num_to_char
+from utils import load_data, num_to_char, convert_mpeg_to_mp4
 from modelutil import load_model
 
 st.set_page_config(layout='wide')
@@ -23,18 +23,15 @@ if options:
     with col1: 
         st.info('The video below displays the converted video in mp4 format')
         file_path = os.path.join('app', 'data', 's1', selected_video)
-        os.system(f'ffmpeg -i {file_path} -vcodec libx264 app/test_video.mp4 -y')
-
-        fp = os.path.join('app', 'data', 's1')
-
-        video = open('app/test_video.mp4', 'rb') 
+        
+        temp_mp4_file = convert_mpeg_to_mp4(file_path)
+        video = open(temp_mp4_file, 'rb') 
         video_bytes = video.read() 
         st.video(video_bytes)
 
 
     with col2: 
         video, annotations = load_data(tf.convert_to_tensor(file_path))
-        print(fp)
         st.info('This is the output of the machine learning model as tokens')
         model = load_model()
         yhat = model.predict(tf.expand_dims(video, axis=0))
