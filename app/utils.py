@@ -16,9 +16,10 @@ num_to_char = tf.keras.layers.StringLookup(
 
 def convert_to_mp4(video_path):
     clip = VideoFileClip(video_path)
+    fps = clip.fps if clip.fps is not None else 30  # Use 30 as a default fps if it is not available
     with tempfile.NamedTemporaryFile(delete=False, suffix=".mp4") as temp_file:
         temp_filename = temp_file.name
-        clip.write_videofile(temp_filename, codec='libx264', audio_codec='aac', fps=None)
+        clip.write_videofile(temp_filename, codec='libx264', audio_codec='aac', fps=fps)
         return temp_filename
 
 def load_video(path:str) -> List[float]: 
