@@ -1,7 +1,7 @@
 import streamlit as st
 import os 
 import tensorflow as tf 
-from utils import load_data, num_to_char, convert_mpeg_to_mp4
+from utils import load_data, num_to_char, convert_to_mp4
 from modelutil import load_model
 
 st.set_page_config(layout='wide')
@@ -24,10 +24,9 @@ if options:
         st.info('The video below displays the converted video in mp4 format')
         file_path = os.path.join('app', 'data', 's1', selected_video)
         
-        temp_mp4_file = convert_mpeg_to_mp4(file_path)
+        temp_mp4_file = convert_to_mp4(file_path)
         video = open(temp_mp4_file, 'rb') 
-        video_bytes = video.read() 
-        st.video(video_bytes)
+        st.video(video)
 
 
     with col2: 
