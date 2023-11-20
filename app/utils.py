@@ -18,7 +18,6 @@ def convert_to_mp4(video_path):
     clip = VideoFileClip(video_path)
     fps = 30  # Set a constant value for fps
 
-    # Set duration and fps for both video and audio
     video_clip = clip.set_duration(clip.duration).set_fps(fps)
     audio_clip = clip.audio.set_duration(clip.duration).set_fps(fps)
 
