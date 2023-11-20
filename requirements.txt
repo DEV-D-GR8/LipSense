@@ -6,7 +6,7 @@ asttokens==2.2.1
 astunparse==1.6.3
 attrs==23.1.0
 backcall==0.2.0
-black==23.7.0
+black
 blinker==1.6.2
 cachetools==5.3.1
 catboost==1.2
