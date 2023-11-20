@@ -18,7 +18,7 @@ click==8.1.6
 cloudpickle==2.2.1
 colorama==0.4.6
 comm
-contourpy==1.1.0
+contourpy
 convertdate==2.4.0
 coverage==7.2.7
 cycler==0.11.0
