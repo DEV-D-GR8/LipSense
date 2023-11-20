@@ -6,6 +6,7 @@ import tempfile
 import shutil
 import subprocess
 from moviepy.editor import VideoFileClip
+from io import BytesIO
 
 vocab = [x for x in "abcdefghijklmnopqrstuvwxyz'?!123456789 "]
 char_to_num = tf.keras.layers.StringLookup(vocabulary=vocab, oov_token="")
@@ -13,14 +14,12 @@ num_to_char = tf.keras.layers.StringLookup(
     vocabulary=char_to_num.get_vocabulary(), oov_token="", invert=True
 )
 
-
-
-def convert_mpeg_to_mp4(mpeg_path):
-    video_clip = VideoFileClip(mpeg_path)
+def convert_to_mp4(video_path):
+    clip = VideoFileClip(video_path)
     with tempfile.NamedTemporaryFile(delete=False, suffix=".mp4") as temp_file:
-        video_clip.write_videofile(temp_file.name, codec="libx264", fps=24, audio_codec="aac", threads=4)
-
-    return temp_file.name
+        temp_filename = temp_file.name
+        clip.write_videofile(temp_filename, codec='libx264', audio_codec='aac', fps=None)
+        return temp_filename
 
 def load_video(path:str) -> List[float]: 
     cap = cv2.VideoCapture(path)
